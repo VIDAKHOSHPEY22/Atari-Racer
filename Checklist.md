@@ -2,11 +2,13 @@
 
 ## Open Issues
 
-- [ ] Web deployment
 - [ ] coin lane dedup
 - [ ] lane-stripe period mismatch
-- [ ] Game Overhaul
 - [ ] Remove unneeded code
+
+## To do Soon
+- [ ] Web deployment
+- [ ] Game Overhaul
 
 ## Completed — TheM1ddleM1n
 
