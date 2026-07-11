@@ -41,6 +41,8 @@
 - [x] Reduced particle pool size from 300 to 150 to match trimmed effect set
 - [x] Corrected README "Responsive UI" claim, since window size is fixed at 800x600
 - [x] Removed Cone hazard because it duplicated Barrier gameplay
+- [x] Removed rain weather effect and RainPool system to simplify gameplay loop
+- [x] Reduced car skin roster from 15 to 10 and renamed all skins for a more professional tone
 
 ## Completed — VIDAKHOSHPEY22
 
