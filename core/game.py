@@ -303,22 +303,22 @@ class Game:
             self.obs_misc.append(OilSlick(lc - OilSlick.WIDTH // 2, spd * 0.8))
 
     def _spawn_coins(self):
-        existing_xs = {c.x for c in self.coins if c.y < 0}
-        available = [lc for lc in LANE_CENTERS if lc not in existing_xs]
-        if not available:
-            available = list(LANE_CENTERS)
+    recent = set(self.coin_lane_history[-4:])
+    available = [lc for lc in LANE_CENTERS if lc not in recent]
+    if not available:
+        available = list(LANE_CENTERS)
 
-        random.shuffle(available)
-        count = random.randint(2, 4) if random.random() < 0.3 else 1
-        count = min(count, len(available))
-        chosen = available[:count]
+    random.shuffle(available)
+    count = random.randint(2, 4) if random.random() < 0.3 else 1
+    count = min(count, len(available))
+    chosen = available[:count]
 
-        for lc in chosen:
-            self.coins.append(Coin(lc, self.scroll_speed * 0.95))
+    for lc in chosen:
+        self.coins.append(Coin(lc, self.scroll_speed * 0.95))
 
-        self.coin_lane_history.extend(chosen)
-        if len(self.coin_lane_history) > 12:
-            self.coin_lane_history = self.coin_lane_history[-12:]
+    self.coin_lane_history.extend(chosen)
+    if len(self.coin_lane_history) > 12:
+        self.coin_lane_history = self.coin_lane_history[-12:]
 
     def _on_hit(self):
         self.lives -= 1
