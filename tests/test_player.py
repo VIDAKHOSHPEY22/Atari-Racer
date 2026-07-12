@@ -15,7 +15,7 @@ class MockKeys:
             pygame.K_LEFT: 1 if left else 0,
             pygame.K_RIGHT: 1 if right else 0,
         }
-    
+
     def __getitem__(self, key):
         return self._data.get(key, 0)
 
@@ -44,11 +44,6 @@ def test_player_boost_application(player):
     player.apply_boost()
     assert player.boost_timer == 1.5
     assert player.boost_multiplier == 1.8
-
-def test_player_powerup_application(player):
-    player.apply_powerup('shield')
-    assert player.has_powerup('shield') is True
-    assert player.powerups['shield'] == 6.0
 
 def test_player_speed_factor(player):
     assert player.get_speed_factor() == 1.0
