@@ -17,3 +17,7 @@ ENV/
 highscore.txt
 
 progress.txt
+
+stats.txt
+
+achievements.txt
