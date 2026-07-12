@@ -3,7 +3,6 @@
 ## Open Issues
 
 ## To do Soon
-- [ ] Web deployment
 - [ ] Game Overhaul
 
 ## Completed — TheM1ddleM1n
