@@ -1,6 +1,7 @@
 # atari.py Development Checklist
 
 ## Open Issues
+- [ ] Remove Difficulty modes / Simplify Menu
 
 ## To do Soon
 - [ ] Game Overhaul
