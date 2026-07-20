@@ -131,7 +131,7 @@ pyinstaller --onefile --windowed atari.py
 
 ---
 
-## Main Contributors
+## Contributors
 <table align="center">
   <tr>
     <td align="center">
@@ -140,8 +140,6 @@ pyinstaller --onefile --windowed atari.py
         <br />
         <b>👑 TheM1ddleM1n</b>
       </a>
-      <br />
-      <img src="https://img.shields.io/badge/-Core%20Maintainer-d4af37?style=flat-square" />
       <br />
       <img src="https://img.shields.io/badge/-Co--Owner-blue?style=flat-square" />
     </td>
