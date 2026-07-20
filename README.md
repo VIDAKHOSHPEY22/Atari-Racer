@@ -106,18 +106,18 @@ python atari.py
 
 ### Dependencies
 - Python 3.13
-- pygame
+- pygame-ce
 - numpy (optional, used for sound effects)
 
 ### pip installation
 
 ```bash
-pip install pygame
+pip install pygame-ce
 ```
 
 For sound effects:
 ```bash
-pip install pygame numpy
+pip install pygame-ce numpy
 ```
 
 ---
