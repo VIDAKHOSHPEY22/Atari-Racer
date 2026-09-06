@@ -80,7 +80,7 @@ python atari.py
 
 ---
 
-## Screenshots
+## Screenshots of game
 
 ### Menu
 
