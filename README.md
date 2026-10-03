@@ -6,14 +6,13 @@
 </p>
 
 <h1 align="center">ATARI RACER</h1>
-
 <h3 align="center">A 2D endless racing game built with Python</h3>
 
 ---
 
 ## About the Project
 
-ATARI RACER is an exciting arcade-style racing game where you dodge traffic, collect coins, and set high scores. The game features 3 difficulty levels, 10 car skins with unique speed bonuses, boost mechanics and a combo multiplier system.
+ATARI RACER is a arcade-style racing game where you dodge traffic, collect coins, and set high scores. The game features 3 difficulty levels, 10 car skins with unique speed bonuses, boost mechanics and a combo multiplier system.
 
 ---
 
@@ -55,7 +54,7 @@ python atari.py
 
 ---
 
-## Latest Version - V5.6
+## V5.6 (Latest)
 
 - Removed the police chase mechanic to keep the core dodge-and-collect loop tighter
 - Removed the Magnet power-up; Shield and Time Freeze remain
@@ -72,7 +71,7 @@ python atari.py
 
 ---
 
-## Gameplay Preview
+## Gameplay
 
 <p align="center">
   <img src="screenshots/new-preview.gif" width="90%" alt="Gameplay Preview">
@@ -80,7 +79,7 @@ python atari.py
 
 ---
 
-## Screenshots of game
+## Screenshots
 
 ### Menu
 
@@ -217,10 +216,4 @@ Email: vidatwin18@gmail.com
 
 This project is licensed under MIT.
 
----
-
 <div align="center">
-
-**Ready, Set, GO!**
-
-</div>
