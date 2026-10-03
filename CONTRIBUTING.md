@@ -31,7 +31,7 @@ This project was started by **VIDAKHOSHPEY22** as a personal learning experience
 
 When reporting a bug, please include:
 
-- Your operating system (e.g., Windows, ChromeOS, Linux, Other) and the Python version which is (3.13)
+- Your operating system (e.g., Windows, ChromeOS, Linux, Other) and the Python version which is (3.12)
 - Logical steps to resolve the current issue
 - Screenshots if applicable
 
