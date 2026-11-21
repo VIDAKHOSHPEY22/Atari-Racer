@@ -191,15 +191,6 @@ pyinstaller --onefile --windowed atari.py
       <br />
       <small>Contributor</small>
     </td>
-    <td align="center">
-      <a href="https://github.com/mukeshlilawat1">
-        <img src="https://github.com/mukeshlilawat1.png?size=80" width="70" height="70" style="border-radius:50%;" />
-        <br />
-        <b>Mukesh</b>
-      </a>
-      <br />
-      <small>Contributor</small>
-    </td>
   </tr>
 </table>
 
