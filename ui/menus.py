@@ -58,9 +58,6 @@ class MenuRenderer:
             screen.blit(glow, (tx - offset, 38 - offset))
         screen.blit(title, (tx, 35))
         
-        sub = f_tiny.render("EXTREME EDITION", True, ORANGE)
-        screen.blit(sub, (WIDTH // 2 - sub.get_width() // 2, 85))
-        
         bg = pg.Surface((460, 480), pg.SRCALPHA)
         bg.fill((0, 0, 0, 190))
         pg.draw.rect(bg, (255, 255, 255, 40), (0, 0, 460, 480), 2, border_radius=15)
