@@ -8,50 +8,39 @@ class HUD:
     def __init__(self, fonts):
         self.small = fonts[1]
         self.tiny = fonts[2]
-        self.surf = pg.Surface((340, 155), pg.SRCALPHA)
+        self.surf = pg.Surface((260, 160), pg.SRCALPHA)
         self._text_cache = {}
 
     def _render(self, font, text, color):
-        key = (id(font), text, color)
-        if key not in self._text_cache:
-            self._text_cache[key] = font.render(text, True, color)
-        return self._text_cache[key]
+        surf = font.render(text, True, color)
+        return surf
 
-    def draw(self, surface, score, level, speed_pct, difficulty, multiplier,
-             lives, max_lives, boost_timer):
-        self.surf.fill((0, 0, 0, 180))
-        pg.draw.rect(self.surf, (255, 255, 255, 40), (0, 0, 340, 155), 3, border_radius=10)
+    def draw(self, surface, score, level, time_survived, multiplier, lives, max_lives, boost_timer):
+        self.surf.fill((0, 0, 0, 170))
+        pg.draw.rect(self.surf, (255, 255, 255, 35), (0, 0, 260, 160), 2, border_radius=10)
 
         pulse = int(8 * abs(math.sin(pg.time.get_ticks() / 300)))
-        score_col = (255, 220, 50 + pulse)
-        self._blit(f"SCORE: {score}", score_col, 12, 10)
+        self._blit(f"SCORE  {score}", (255, 220, 50 + pulse), 12, 10)
+        self._blit(f"LEVEL  {level}", CYAN, 12, 38)
 
-        self._blit(f"LEVEL: {level}", CYAN, 12, 40)
-
-        self._blit(f"SPEED: {speed_pct}%", GREEN, 12, 65)
-
-        bar_width, bar_height = 100, 8
-        fill = int(bar_width * min(1.0, speed_pct / 250))
-        pg.draw.rect(self.surf, (50, 50, 50), (12, 88, bar_width, bar_height), border_radius=4)
-        pg.draw.rect(self.surf, GREEN, (12, 88, fill, bar_height), border_radius=4)
-
-        self._blit(f"MODE: {difficulty}", YELLOW, 12, 100, tiny=True)
-
-        if boost_timer > 0:
-            boost_width = int(100 * (boost_timer / 1.5))
-            pg.draw.rect(self.surf, ORANGE, (12, 115, boost_width, 6), border_radius=3)
-            self._blit("BOOST!", (255, 105, 0), 12, 120, tiny=True)
-
-        y_icons = 138
-        for i in range(max_lives):
-            draw_heart(self.surf, 22 + i * 20, y_icons, 14, RED if i < lives else GRAY)
+        mins = int(time_survived) // 60
+        secs = int(time_survived) % 60
+        self._blit(f"TIME   {mins:01d}:{secs:02d}", WHITE, 12, 66)
 
         if multiplier > 1.0:
-            col = YELLOW if multiplier >= 2.0 else (150, 220, 150)
-            glow = int(50 * abs(math.sin(pg.time.get_ticks() / 100)))
-            self._blit(f"x{multiplier:.1f} COMBO!",
-                      clamp_color(col[0] + glow, col[1] + glow, col[2]),
-                      130, 126, tiny=True)
+            col = YELLOW if multiplier >= 2.0 else (160, 230, 160)
+            self._blit(f"MULT   x{multiplier:.1f}", col, 12, 94)
+        else:
+            self._blit("MULT   x1.0", GRAY, 12, 94)
+
+        if boost_timer > 0:
+            boost_fill = int(120 * (boost_timer / 1.5))
+            pg.draw.rect(self.surf, (60, 30, 0), (12, 118, 120, 7), border_radius=3)
+            pg.draw.rect(self.surf, ORANGE, (12, 118, boost_fill, 7), border_radius=3)
+            self._blit("BOOST", ORANGE, 138, 114, tiny=True)
+
+        for i in range(max_lives):
+            draw_heart(self.surf, 22 + i * 22, 143, 14, RED if i < lives else (60, 60, 60))
 
         surface.blit(self.surf, (10, 10))
 
@@ -84,4 +73,5 @@ class HUD:
         if isinstance(color, tuple):
             color = tuple(int(clamp(c, 0, 255)) for c in color)
         font = self.tiny if tiny else self.small
-        self.surf.blit(self._render(font, text, color), (x, y))
+        surface = font.render(text, True, color)
+        self.surf.blit(surface, (x, y))
