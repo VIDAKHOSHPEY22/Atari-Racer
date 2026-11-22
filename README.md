@@ -12,7 +12,7 @@
 
 ## About the Project
 
-ATARI RACER is a arcade-style racing game where you dodge traffic, collect coins, and set high scores. The game features 3 difficulty levels, 10 car skins with unique speed bonuses, boost mechanics and a combo multiplier system.
+ATARI RACER is an arcade-style endless racer where you dodge traffic, collect coins, and chase high scores. Survive as long as possible — the longer you last, the faster it gets and the more your coins are worth.
 
 ---
 
@@ -31,13 +31,13 @@ python atari.py
 
 | Feature | Description |
 |---------|-------------|
-| Car Skins | 10 different skins with unique speed bonuses |
-| Boost System | Press SPACE to activate speed boost (costs 50 points) |
-| Combo Multiplier | Chain obstacles and coins for multipliers up to x4 |
+| Car Skins | 6 distinct skins with unique color schemes |
+| Boost System | Press SPACE to activate speed boost (costs 100 points) |
+| Time Multiplier | Score multiplier increases every 30 seconds survived |
+| Progressive Difficulty | Speed and obstacle frequency ramp up over time |
 | Sound Effects | Procedurally generated audio for coins, boost, hits, and more |
-| Particle Effects | Explosions, sparks, and boost trail effects |
-| Power-Up | Shield pickups |
-| Difficulty Levels | Easy, Medium, and Hard |
+| Particle Effects | Coin and hit burst effects |
+| Achievements | 16 achievements to unlock |
 | High Score | Automatically saves your best score |
 | Garage Upgrades | Spend coins on permanent speed and life upgrades |
 
@@ -48,26 +48,60 @@ python atari.py
 | Key | Action |
 |-----|--------|
 | ← → | Steer left / right |
-| SPACE | Boost |
+| SPACE | Boost (costs 100 pts) |
 | P | Pause / Resume |
 | R | Restart |
 
 ---
 
-## V5.6 (Latest)
+## Scoring
 
-- Removed the police chase mechanic to keep the core dodge-and-collect loop tighter
-- Removed the Magnet power-up; Shield and Time Freeze remain
-- Removed screen shake on collisions for a calmer, steadier camera
-- Removed fog weather, Cone and the Speed Bump hazard to simplify the hazard set down to Barrier and Oil Slick
-- Reduced the particle pool size to match the trimmed effect set
-- Corrected the README to no longer claim dynamic responsive resizing, since the window size is currently fixed
-- Updated `Checklist.md` to track these changes
-- Renamed from racing-car-game to Atari-Racer for clarity
-- Bump pip/github actions stuff
-- Removed the rain weather effect and RainPool system to simplify the gameplay loop
-- Reduced the car skin roster from 15 to 10 and renamed all skins for a more professional tone
-- Updated to Python 3.14 support and fixed sound bug
+Coins are your primary score source. The longer you survive, the higher your multiplier:
+
+| Time Survived | Multiplier |
+|---------------|------------|
+| 0 – 29s | x1.0 |
+| 30 – 59s | x1.5 |
+| 60 – 89s | x2.0 |
+| 90 – 119s | x2.5 |
+| 120 – 149s | x3.0 |
+| 150s+ | x4.0 |
+
+---
+
+## Achievements
+
+| Achievement | Condition |
+|-------------|-----------|
+| Pocket Change | Collect your first coin |
+| Coin Collector | Collect 100 coins lifetime |
+| Coin Hoarder | Collect 1000 coins lifetime |
+| Rookie Racer | Score 500 in one run |
+| Road Legend | Score 2000 in one run |
+| Apex Racer | Score 5000 in one run |
+| Dedicated Driver | Play 25 runs |
+| Minute Man | Survive 60 seconds in one run |
+| Endurance | Survive 180 seconds in one run |
+| Immortal | Survive 300 seconds in one run |
+| Nitro Junkie | Use boost 10 times |
+| Getting Serious | Reach level 5 |
+| Elite | Reach level 10 |
+| Unlucky | Die at level 1 |
+| Untouchable | Complete a run without getting hit |
+| Big Spender | Spend 500 coins in the garage |
+
+---
+
+## Car Skins
+
+| Skin | Vibe |
+|------|------|
+| Stealth | Matte black with red accents |
+| Rally | White with yellow roof and blue accents |
+| Retro | Cream body with brown roof |
+| Viper | Deep red with orange accents |
+| Arctic | Ice blue with cyan accents |
+| Phantom | Dark purple with pink accents |
 
 ---
 
@@ -104,7 +138,7 @@ python atari.py
 ## Installation
 
 ### Dependencies
-- Python 3.13
+- Python 3.13+
 - pygame-ce
 - numpy (optional, used for sound effects)
 
@@ -194,10 +228,9 @@ pyinstaller --onefile --windowed atari.py
   </tr>
 </table>
 
-
 ---
 
-## Contact Me
+## Contact
 
 Email: vidatwin18@gmail.com
 
@@ -206,5 +239,3 @@ Email: vidatwin18@gmail.com
 ## License
 
 This project is licensed under MIT.
-
-<div align="center">
