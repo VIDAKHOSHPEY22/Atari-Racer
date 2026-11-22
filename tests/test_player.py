@@ -9,7 +9,6 @@ from data.skins import Skin
 from core.settings import ROAD_LEFT, ROAD_RIGHT
 
 class MockKeys:
-    """Minimal stand-in for pygame.key.get_pressed()."""
     def __init__(self, left=False, right=False):
         self._data = {
             pygame.K_LEFT: 1 if left else 0,
@@ -21,7 +20,7 @@ class MockKeys:
 
 @pytest.fixture
 def player():
-    skin = Skin("Test", (255, 0, 0), "sedan", 1.0)
+    skin = Skin("Test", (255, 0, 0), (180, 0, 0), (100, 140, 160), (20, 20, 20), (255, 100, 0), "sedan")
     return Player(skin, speed_level=0)
 
 def test_player_initial_position(player):
@@ -49,7 +48,8 @@ def test_player_speed_factor(player):
     assert player.get_speed_factor() == 1.0
     player.apply_boost()
     assert player.get_speed_factor() == 1.8
-    player2 = Player(Skin("Test2", (0,255,0), "sedan", 1.0), speed_level=1)
+    skin2 = Skin("Test2", (0, 255, 0), (0, 180, 0), (100, 160, 120), (20, 20, 20), (0, 255, 100), "sedan")
+    player2 = Player(skin2, speed_level=1)
     assert player2.get_speed_factor() == 1.0 + 0.04
 
 def test_player_clamp_within_road(player):
