@@ -1,59 +1,79 @@
 name: Bug Report
-description: Something is not working.
+description: Something is not working as expected.
 labels: ["bug"]
 assignees: ["TheM1ddleM1n"]
 body:
   - type: markdown
     attributes:
       value: |
-        ### 📌 Project Environment Note
-        * **Target File:** `atari.py` (This template will only apply to bugs found in `atari.py`)
-        * **Required Python Version:** `3.13`
-        
+        ### Before Submitting
+        Please confirm the following before filing a report:
+        - You are running **Python 3.13**
+        - You have installed all dependencies via `pip install -r requirements.txt`
+        - You are running `atari.py` from the project root
+
   - type: textarea
     id: steps
     attributes:
       label: Steps to Reproduce
-      description: How do we make the bug happen?
+      description: Provide a clear, ordered sequence of steps that reliably reproduces the issue.
       placeholder: |
-        1. Ran atari.py in my own terminal
-        2. Saw the Pygame window pop up
-        3. Game couldn't run because of an error
+        1. Run atari.py from the project root
+        2. Navigate to the garage
+        3. Purchase a speed upgrade
+        4. Observe the error
     validations:
       required: true
+
   - type: textarea
     id: expected
     attributes:
       label: Expected Behavior
       description: What should have happened?
-      placeholder: |
-        The game should have no errors
+      placeholder: The upgrade should apply and the wallet balance should decrease accordingly.
     validations:
       required: true
+
   - type: textarea
     id: actual
     attributes:
       label: Actual Behavior
-      description: Tell me what happened?
-      placeholder: |
-        The game crashed with a Syntax/Logic Error
+      description: What actually happened?
+      placeholder: The game crashed with a KeyError after clicking the upgrade button.
     validations:
       required: true
+
   - type: textarea
     id: errors
     attributes:
       label: Error Output
-      description: Paste any error messages from your terminal.
+      description: Paste the full traceback or error message from your terminal. If there is no error output, describe what you observed instead.
+      render: shell
+    validations:
+      required: false
+
   - type: input
     id: os
     attributes:
       label: Operating System
-      description: What OS are you running?
-      placeholder: e.g. Windows 11, MacOS Sequoia, Ubuntu 24.04
+      description: Include the OS name and version.
+      placeholder: e.g. Windows 11, macOS Sequoia 15.2, Ubuntu 24.04
     validations:
       required: true
-  - type: textarea
-    id: additional-info
+
+  - type: input
+    id: python
     attributes:
-      label: Additional Information
-      description: "Anything else? Pro tip: 'please fix this bug' will NOT help."
+      label: Python Version
+      description: Output of `python --version`
+      placeholder: e.g. Python 3.13.0
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Any other information that may help diagnose the issue — screenshots, save files, reproduction rate, or relevant system configuration.
+    validations:
+      required: false
