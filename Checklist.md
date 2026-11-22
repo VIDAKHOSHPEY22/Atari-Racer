@@ -1,10 +1,10 @@
-# atari.py Development Checklist
+# Development Checklist
 
 ## Open Issues
-- [ ] Remove Difficulty modes / Simplify Menu
+Nothing!
 
 ## To do Soon
-- [ ] Game Overhaul
+Nothing!
 
 ## Completed — TheM1ddleM1n
 
@@ -44,6 +44,8 @@
 - [x] Fixed coin lane dedup to track recent spawn history instead of a transient y-position check that rarely triggered
 - [x] Fixed lane-stripe period mismatch by aligning RUMBLE_PERIOD as a clean divisor of the stripe period, keeping rumble strips and lane stripes in phase
 - [x] Removed unused ROAD_COLOR constant from settings
+- [x] Remove Difficulty modes / Simplify Menu
+- [x] Game Overhaul
 
 ## Completed — VIDAKHOSHPEY22
 
