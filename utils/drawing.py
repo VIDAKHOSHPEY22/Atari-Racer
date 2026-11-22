@@ -1,5 +1,4 @@
 import pygame as pg
-from core.settings import RED, CYAN, BLACK, WHITE
 from utils.helpers import clamp_color
 
 def draw_heart(surface, cx, cy, size, color):
@@ -16,37 +15,51 @@ def draw_arrow(surface, cx, cy, size, color, direction):
         pts = [(cx - h, cy - h), (cx - h, cy + h), (cx, cy)]
     pg.draw.polygon(surface, color, pts)
 
-def draw_car(surface, x, y, w, h, body_color, window_color, car_type, player=False):
+def draw_car(surface, x, y, w, h, skin, player=False):
+    body = skin.body
+    roof = skin.roof
+    window = skin.window
+    wheel = skin.wheel
+    accent = skin.accent
+    car_type = skin.type
+
     shadow = pg.Surface((w + 6, h // 3), pg.SRCALPHA)
     pg.draw.ellipse(shadow, (0, 0, 0, 80), shadow.get_rect())
     surface.blit(shadow, (x - 3, y + h - h // 6))
-    
-    r, g, b = body_color
-    hi = clamp_color(r + 50, g + 50, b + 50)
-    sh = clamp_color(r - 40, g - 40, b - 40)
-    
+
+    hi = clamp_color(body[0] + 45, body[1] + 45, body[2] + 45)
+    sh = clamp_color(body[0] - 35, body[1] - 35, body[2] - 35)
+
     pg.draw.rect(surface, sh, (x + 2, y + 4, w - 4, h - 4), border_radius=5)
-    pg.draw.rect(surface, body_color, (x, y, w, h), border_radius=5)
-    pg.draw.rect(surface, hi, (x + 3, y + 3, w - 6, 8), border_radius=3)
-    
+    pg.draw.rect(surface, body, (x, y, w, h), border_radius=5)
+
     if car_type == "sedan":
-        pg.draw.rect(surface, window_color, (x + 6, y + 12, w - 12, 20), border_radius=3)
-        pg.draw.rect(surface, window_color, (x + 6, y + 38, w - 12, 18), border_radius=3)
-        pg.draw.line(surface, (0, 0, 0), (x + 6, y + 23), (x + w - 6, y + 23), 1)
-    elif car_type == "truck":
-        pg.draw.rect(surface, window_color, (x + 8, y + 8, w - 16, 18), border_radius=3)
-        pg.draw.rect(surface, sh, (x + 4, y + 35, w - 8, h - 42), border_radius=2)
-        pg.draw.line(surface, hi, (x + 4, y + 34), (x + w - 4, y + 34), 1)
-    else:  # suv
-        pg.draw.rect(surface, window_color, (x + 6, y + 10, w - 12, 30), border_radius=3)
-        pg.draw.line(surface, (0, 0, 0), (x + w // 2, y + 10), (x + w // 2, y + 40), 1)
-    
-    wheel_col, rim_col = (30, 30, 35), (120, 120, 130)
-    for wx, wy in [(x - 4, y + 8), (x + w - 9, y + 8), (x - 4, y + h - 20), (x + w - 9, y + h - 20)]:
-        pg.draw.rect(surface, wheel_col, (wx, wy, 13, 13), border_radius=3)
-        pg.draw.rect(surface, rim_col, (wx + 3, wy + 3, 7, 7), border_radius=2)
-    
+        roof_rect = pg.Rect(x + 8, y + 10, w - 16, h // 2 - 4)
+        pg.draw.rect(surface, roof, roof_rect, border_radius=4)
+        pg.draw.rect(surface, window, (x + 10, y + 13, w - 20, 16), border_radius=3)
+        pg.draw.rect(surface, window, (x + 10, y + 34, w - 20, 14), border_radius=3)
+        pg.draw.line(surface, sh, (x + 10, y + 30), (x + w - 10, y + 30), 2)
+        pg.draw.rect(surface, accent, (x + 2, y + h - 10, w - 4, 6), border_radius=2)
+        pg.draw.rect(surface, accent, (x, y + h // 2, 4, h // 3), border_radius=2)
+        pg.draw.rect(surface, accent, (x + w - 4, y + h // 2, 4, h // 3), border_radius=2)
+    elif car_type == "suv":
+        roof_rect = pg.Rect(x + 6, y + 8, w - 12, h // 2)
+        pg.draw.rect(surface, roof, roof_rect, border_radius=4)
+        pg.draw.rect(surface, window, (x + 8, y + 11, w - 16, 14), border_radius=3)
+        pg.draw.rect(surface, window, (x + 8, y + 30, (w - 20) // 2, 14), border_radius=3)
+        pg.draw.rect(surface, window, (x + w // 2 + 2, y + 30, (w - 20) // 2, 14), border_radius=3)
+        pg.draw.line(surface, sh, (x + w // 2, y + 30), (x + w // 2, y + 44), 2)
+        pg.draw.rect(surface, accent, (x + 2, y + h - 10, w - 4, 6), border_radius=2)
+        pg.draw.rect(surface, accent, (x, y + h // 3, 4, h // 2), border_radius=2)
+        pg.draw.rect(surface, accent, (x + w - 4, y + h // 3, 4, h // 2), border_radius=2)
+
+    rim = clamp_color(wheel[0] + 60, wheel[1] + 60, wheel[2] + 60)
+    for wx, wy in [(x - 5, y + 10), (x + w - 8, y + 10), (x - 5, y + h - 22), (x + w - 8, y + h - 22)]:
+        pg.draw.rect(surface, wheel, (wx, wy, 13, 13), border_radius=3)
+        pg.draw.rect(surface, rim, (wx + 3, wy + 3, 7, 7), border_radius=2)
+
     if player:
-        for lx in [x + 4, x + w - 12]:
-            pg.draw.ellipse(surface, (255, 255, 100), (lx, y - 5, 8, 6))
-        pg.draw.rect(surface, RED, (x + 4, y + h - 4, w - 8, 4), border_radius=2)
+        headlight = clamp_color(accent[0] + 80, accent[1] + 80, accent[2] + 80)
+        for lx in [x + 5, x + w - 13]:
+            pg.draw.ellipse(surface, headlight, (lx, y - 5, 8, 5))
+        pg.draw.rect(surface, accent, (x + 5, y + h - 4, w - 10, 4), border_radius=2)
