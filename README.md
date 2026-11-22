@@ -12,7 +12,7 @@
 
 ## About the Project
 
-ATARI RACER is an arcade-style endless racer where you dodge traffic, collect coins, and chase high scores. Survive as long as possible — the longer you last, the faster it gets and the more your coins are worth.
+ATARI RACER is an arcade-style endless racer where you dodge traffic, collect coins, and chase high scores. Survive as long as possible, as the longer you last, the faster it gets and the more your coins are worth.
 
 ---
 
@@ -102,36 +102,6 @@ Coins are your primary score source. The longer you survive, the higher your mul
 | Viper | Deep red with orange accents |
 | Arctic | Ice blue with cyan accents |
 | Phantom | Dark purple with pink accents |
-
----
-
-## Gameplay
-
-<p align="center">
-  <img src="screenshots/new-preview.gif" width="90%" alt="Gameplay Preview">
-</p>
-
----
-
-## Screenshots
-
-### Menu
-
-<p align="center">
-  <img src="screenshots/new-menu.png" width="90%" alt="Menu">
-</p>
-
-### Gameplay
-
-<p align="center">
-  <img src="screenshots/new-game.png" width="90%" alt="Gameplay">
-</p>
-
-### Game Over
-
-<p align="center">
-  <img src="screenshots/new-end.png" width="90%" alt="Game Over">
-</p>
 
 ---
 
