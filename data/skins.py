@@ -1,17 +1,12 @@
 from collections import namedtuple
-from core.settings import BLUE, RED, GREEN, YELLOW, PURPLE, ORANGE
 
-Skin = namedtuple("Skin", "name color type speed_bonus")
+Skin = namedtuple("Skin", "name body roof window wheel accent type")
 
 CAR_SKINS = [
-    Skin("Azure Sedan", BLUE, "sedan", 1.0),
-    Skin("Crimson Sport", RED, "sedan", 1.1),
-    Skin("Forest SUV", GREEN, "suv", 0.95),
-    Skin("Solar Sedan", YELLOW, "sedan", 1.15),
-    Skin("Amethyst SUV", PURPLE, "suv", 1.0),
-    Skin("Ember Truck", ORANGE, "truck", 0.9),
-    Skin("Glacier White", (230, 230, 235), "sedan", 1.08),
-    Skin("Onyx Black", (25, 25, 30), "sedan", 1.12),
-    Skin("Titanium SUV", (140, 160, 175), "suv", 0.97),
-    Skin("Sovereign Gold", (212, 175, 55), "sedan", 1.13),
+    Skin("Stealth", (20, 20, 25), (10, 10, 15), (40, 40, 60), (15, 15, 20), (180, 20, 20), "sedan"),
+    Skin("Rally", (240, 240, 245), (230, 200, 30), (180, 220, 255), (30, 30, 35), (40, 80, 200), "sedan"),
+    Skin("Retro", (210, 195, 160), (140, 100, 70), (180, 210, 220), (40, 35, 30), (180, 180, 170), "suv"),
+    Skin("Viper", (160, 15, 15), (10, 10, 10), (80, 120, 140), (20, 20, 20), (220, 100, 20), "sedan"),
+    Skin("Arctic", (180, 220, 240), (240, 245, 255), (200, 240, 255), (60, 70, 80), (40, 200, 220), "suv"),
+    Skin("Phantom", (60, 20, 90), (140, 140, 160), (120, 80, 160), (25, 15, 35), (220, 80, 180), "sedan"),
 ]
