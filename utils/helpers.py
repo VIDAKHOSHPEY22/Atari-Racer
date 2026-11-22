@@ -1,6 +1,4 @@
 import math
-from bisect import bisect_right
-from core.settings import COMBO_MAP
 
 def clamp(v, lo, hi):
     return lo if v < lo else (hi if v > hi else v)
@@ -16,19 +14,18 @@ def lerp_color(c0, c1, t):
     )
 
 def level_threshold(level):
-    return (20 + level * 6) * level
+    return level * 750
 
-def get_combo_multiplier(combo):
-    # 0-2: 1x, 3-6: 1.5x, 7-11: 2x, 12-17: 2.5x, 18-24: 3x, 25+: 4x
-    if combo < 3:
+def get_time_multiplier(time_survived):
+    if time_survived < 30:
         return 1.0
-    elif combo < 7:
+    elif time_survived < 60:
         return 1.5
-    elif combo < 12:
+    elif time_survived < 90:
         return 2.0
-    elif combo < 18:
+    elif time_survived < 120:
         return 2.5
-    elif combo < 25:
+    elif time_survived < 150:
         return 3.0
     else:
         return 4.0
