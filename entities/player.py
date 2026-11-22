@@ -15,9 +15,8 @@ class Player:
         self.x = float(WIDTH // 2 - self.WIDTH // 2)
         self.y = float(HEIGHT - self.HEIGHT - 30)
 
-        self.color = skin.color
-        self.car_type = skin.type
-        self.speed_bonus = skin.speed_bonus + speed_level * 0.04
+        self.skin = skin
+        self.speed_bonus = 1.0 + speed_level * 0.04
 
         self.vel_x = 0.0
         self.tilt = 0.0
@@ -27,19 +26,15 @@ class Player:
         self.slide_timer = 0.0
         self.hazard_lockout = 0.0
 
-        self.invincible = False
-        self.invincible_timer = 0.0
-
         self._cache_surf = None
         self._cache_key = None
         self._prerender()
 
     def _prerender(self):
-        key = (self.color, self.car_type)
+        key = self.skin.name
         if self._cache_key != key:
             self._cache_surf = pg.Surface((self.WIDTH + 12, self.HEIGHT + 12), pg.SRCALPHA)
-            draw_car(self._cache_surf, 6, 6, self.WIDTH, self.HEIGHT,
-                    self.color, CYAN, self.car_type, player=True)
+            draw_car(self._cache_surf, 6, 6, self.WIDTH, self.HEIGHT, self.skin, player=True)
             self._cache_key = key
 
     def apply_boost(self):
@@ -53,19 +48,10 @@ class Player:
         self.slide_timer = 1.0
         self.hazard_lockout = 1.0
 
-    def apply_invincibility(self, duration):
-        self.invincible = True
-        self.invincible_timer = duration
-
     def update(self, dt, keys, rain_grip_penalty=0.0):
         self.boost_timer = max(0, self.boost_timer - dt)
         if self.boost_timer <= 0:
             self.boost_multiplier = 1.0
-
-        if self.invincible:
-            self.invincible_timer -= dt
-            if self.invincible_timer <= 0:
-                self.invincible = False
 
         if self.hazard_lockout > 0:
             self.hazard_lockout -= dt
@@ -103,15 +89,12 @@ class Player:
         return factor
 
     def draw(self, surface, ticks):
-        if self.invincible and (ticks // 60) % 2 == 0:
-            return
-
         cx = int(self.x + self.WIDTH // 2)
         cy = int(self.y + self.HEIGHT // 2)
 
         if self.boost_timer > 0:
             glow = pg.Surface((self.WIDTH + 20, self.HEIGHT + 20), pg.SRCALPHA)
-            pg.draw.ellipse(glow, (255, 100, 0, 100), glow.get_rect())
+            pg.draw.ellipse(glow, (*self.skin.accent, 90), glow.get_rect())
             surface.blit(glow, (int(self.x) - 10, int(self.y) - 10))
 
         if abs(self.tilt) > 0.3:
