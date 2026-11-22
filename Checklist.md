@@ -3,72 +3,39 @@
 ## Open Issues
 Nothing!
 
-## To do Soon
+## To Do Soon
 Nothing!
 
 ## Completed — TheM1ddleM1n
 
-- [x] Speed system implemented
-- [x] Basic appearance and visuals added
-- [x] Fixed incorrect behavior of passing cars
-- [x] Improved overall appearance and visual polish
-- [x] Gameplay brought up to Atari standard
-- [x] Added obstacles to increase difficulty
-- [x] Fixed HUD hearts to display as symbols
-- [x] Performance improvements for smoother gameplay
-- [x] HUD menu arrow key indicators on boot screen
-- [x] Fixed linting errors (E701/E702)
-- [x] Added additional car skins
-- [x] Added power-ups: shield, magnet, and time freeze
-- [x] Removed gameplay bottlenecks
-- [x] Fixed coin spawning so coins now spawn randomly across lanes
-- [x] Added police car that chases the player
-- [x] Added weather effects (rain, fog)
-- [x] Added car upgrade system
-- [x] Re-randomized coin spawn distribution
-- [x] Simplified pause menu (Paused / Return to Main Menu, with Yes/No confirmation)
-- [x] Removed day/night cycle (cosmetic-only, no gameplay effect)
-- [x] Simplified pause controls to a single key (P); removed ESC as a pause/menu shortcut
-- [x] Pre-rendered power-up icon labels at creation instead of caching by label at draw time
-- [x] Fixed police escape bonus condition so it always awards on a successful escape
-- [x] Raised HUD speed bar cap to reflect true max scroll speed (was visually maxing out early)
-- [x] Removed police car chase mechanic to simplify core gameplay loop
-- [x] Removed Magnet power-up, keeping Shield and Time Freeze
-- [x] Removed screen shake effect on collisions and speed bump events
-- [x] Removed fog weather and the Speed Bump hazard
-- [x] Reduced particle pool size from 300 to 150 to match trimmed effect set
-- [x] Corrected README "Responsive UI" claim, since window size is fixed at 800x600
-- [x] Removed Cone hazard because it duplicated Barrier gameplay
-- [x] Removed rain weather effect and RainPool system to simplify gameplay loop
-- [x] Reduced car skin roster from 15 to 10 and renamed all skins for a more professional tone
-- [x] Fixed coin lane dedup to track recent spawn history instead of a transient y-position check that rarely triggered
-- [x] Fixed lane-stripe period mismatch by aligning RUMBLE_PERIOD as a clean divisor of the stripe period, keeping rumble strips and lane stripes in phase
-- [x] Removed unused ROAD_COLOR constant from settings
-- [x] Remove Difficulty modes / Simplify Menu
-- [x] Game Overhaul
+- [x] Core speed system and gameplay loop
+- [x] Obstacle system with barriers and oil slicks
+- [x] Car upgrade system with speed and life upgrades
+- [x] HUD with hearts, speed, score and level display
+- [x] Pause menu with confirmation dialog
+- [x] Coin spawning across lanes with dedup tracking
+- [x] Lane stripe and rumble strip alignment fix
+- [x] Performance improvements throughout
+- [x] Removed police car, weather, screen shake, and power-ups to simplify loop
+- [x] Removed difficulty selector, single difficulty that ramps over time
+- [x] Full V6 overhaul: time-based multiplier, overhauled skins, simplified particles, reworked achievements
 
 ## Completed — VIDAKHOSHPEY22
 
-- [x] Complete sound system with 5 audio effects using NumPy
-- [x] Particle effects for explosions, coin collection, and boost trails
-- [x] Boost mechanic activated with the Space key (costs 50 points)
-- [x] Screen shake effect on collisions and speed bump events
-- [x] Responsive UI layout for all screen resolutions
-- [x] Speed bonus display in the car selection menu
-- [x] Custom-drawn arrows replacing broken Unicode arrow characters
-- [x] Fixed car positioning within the menu selection box
-- [x] Road lines now scroll downward to reinforce sense of speed
-- [x] Boost glow effect rendered around the player car
-- [x] Random free boost reward on coin collection
+- [x] Sound system with NumPy-generated audio effects
+- [x] Particle effects for hits and coin collection
+- [x] Boost mechanic with glow effect and free boost reward on coins
+- [x] Custom-drawn UI arrows and car positioning fixes
+- [x] Scrolling road lines for sense of speed
 
-## Completed - Esmaili963
+## Completed — Esmaili963
 
-- [x] Refractoring
+- [x] Refactored atari.py into separate modules and folders
 
-## Known Limitations (No issues)
+## Known Limitations
 
-- Garage and Game Over screens are mouse-only for navigation; no keyboard shortcut exists to back out of them aside from `R` (restart) on Game Over.
-- Pygame window size is currently fixed at 800x600 and does not currently support live resizing.
+- Garage and Game Over screens are mouse-only
+- Window size is fixed at 800x600 and does not support live resizing
 
 ## Contact
 
@@ -78,5 +45,5 @@ Nothing!
 ## Contributors
 
 - **TheM1ddleM1n** — Original base game, bug fixes, performance improvements
-- **VIDAKHOSHPEY22** — Sound system, particle effects, boost mechanic, responsive UI
-- **Esmaili963** - Refractoring `atari.py` into separate folders!
+- **VIDAKHOSHPEY22** — Sound system, particle effects, boost mechanic
+- **Esmaili963** — Refactoring into separate folders
