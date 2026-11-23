@@ -8,12 +8,7 @@ class Road:
     STRIPE_W = 10
     STRIPE_H = 60
     STRIPE_GAP = 100
-    LANE_DIVIDERS = [
-        LANE_CENTERS[0] - 8,
-        LANE_CENTERS[1] - 8,
-        LANE_CENTERS[2] - 8,
-        LANE_CENTERS[3] - 8,
-    ]
+    LANE_DIVIDERS = [lc - 8 for lc in LANE_CENTERS]
     RUMBLE_W = 18
     RUMBLE_PERIOD = 40
 
@@ -22,6 +17,7 @@ class Road:
     def __init__(self, scroll_speed):
         self.scroll = 0.0
         self.scroll_speed = scroll_speed
+        self._stripe_offset = 0
 
         if Road._base_surf is None:
             Road._base_surf = self._build_base()
@@ -30,9 +26,6 @@ class Road:
 
     @classmethod
     def _build_base(cls):
-        if cls._base_surf is not None:
-            return cls._base_surf
-
         disp = pg.display.get_surface()
         grass = pg.Surface((ROAD_LEFT, HEIGHT), 0, disp)
         grass.fill(GRASS_COLOR)
@@ -68,7 +61,6 @@ class Road:
         pg.draw.line(s, (255, 255, 100), (ROAD_LEFT, 0), (ROAD_LEFT, HEIGHT), 4)
         pg.draw.line(s, (255, 255, 100), (ROAD_RIGHT, 0), (ROAD_RIGHT, HEIGHT), 4)
 
-        cls._base_surf = s
         return s
 
     def _build_stripe_surf(self):
@@ -79,7 +71,6 @@ class Road:
             glow = pg.Surface((self.STRIPE_W + 4, self.STRIPE_H), pg.SRCALPHA)
             pg.draw.rect(glow, (100, 100, 150, 80), (0, 0, self.STRIPE_W + 4, self.STRIPE_H), border_radius=3)
             s.blit(glow, (lx - 2, 0))
-
             pg.draw.rect(s, (180, 180, 200), (lx, 0, self.STRIPE_W, self.STRIPE_H), border_radius=2)
 
         return s
@@ -87,28 +78,27 @@ class Road:
     def update(self, dt):
         period = self.STRIPE_H + self.STRIPE_GAP
         self.scroll = (self.scroll + self.scroll_speed * dt) % period
+        self._stripe_offset = int(self.scroll % period)
 
     def draw(self, surface):
         surface.blit(self._base, (0, 0))
 
-        period = self.RUMBLE_PERIOD
-        offset = self.scroll % period
+        rumble_period = self.RUMBLE_PERIOD
+        rumble_offset = self.scroll % rumble_period
         elapsed = pg.time.get_ticks() / 1000
         pulse = abs(math.sin(elapsed * 10))
 
-        for i in range(HEIGHT // period + 2):
-            ry = int(i * period - offset)
+        for i in range(HEIGHT // rumble_period + 2):
+            ry = int(i * rumble_period - rumble_offset)
             col = RED if i % 2 == 0 else (255, 200, 100)
             bright_col = tuple(clamp(c + int(50 * pulse), 0, 255) for c in col)
-
             pg.draw.rect(surface, bright_col,
-                        (ROAD_LEFT - self.RUMBLE_W - 22, ry, self.RUMBLE_W, period // 2))
+                        (ROAD_LEFT - self.RUMBLE_W - 22, ry, self.RUMBLE_W, rumble_period // 2))
             pg.draw.rect(surface, bright_col,
-                        (ROAD_RIGHT + 22, ry, self.RUMBLE_W, period // 2))
+                        (ROAD_RIGHT + 22, ry, self.RUMBLE_W, rumble_period // 2))
 
         sp = self.STRIPE_H + self.STRIPE_GAP
-        so = int(self.scroll % sp)
-        y = -sp + so
+        y = -sp + self._stripe_offset
         while y < HEIGHT:
             surface.blit(self._stripe_surf, (0, y))
             y += sp
