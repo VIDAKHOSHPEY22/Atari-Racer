@@ -200,12 +200,6 @@ pyinstaller --onefile --windowed atari.py
 
 ---
 
-## Contact
-
-Email: vidatwin18@gmail.com
-
----
-
 ## License
 
 This project is licensed under MIT.
