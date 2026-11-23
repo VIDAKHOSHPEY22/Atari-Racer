@@ -67,9 +67,9 @@ class Road:
         period = self.STRIPE_H + self.STRIPE_GAP
         s = pg.Surface((WIDTH, period), pg.SRCALPHA)
 
+        glow = pg.Surface((self.STRIPE_W + 4, self.STRIPE_H), pg.SRCALPHA)
+        pg.draw.rect(glow, (100, 100, 150, 80), (0, 0, self.STRIPE_W + 4, self.STRIPE_H), border_radius=3)
         for lx in self.LANE_DIVIDERS:
-            glow = pg.Surface((self.STRIPE_W + 4, self.STRIPE_H), pg.SRCALPHA)
-            pg.draw.rect(glow, (100, 100, 150, 80), (0, 0, self.STRIPE_W + 4, self.STRIPE_H), border_radius=3)
             s.blit(glow, (lx - 2, 0))
             pg.draw.rect(s, (180, 180, 200), (lx, 0, self.STRIPE_W, self.STRIPE_H), border_radius=2)
 
