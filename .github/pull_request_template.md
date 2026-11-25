@@ -6,10 +6,10 @@
 
 ## Type of change
 
-- [ ] Bug fix
-- [ ] New feature
-- [ ] Performance improvement
-- [ ] Documentation update
+- [ ] Bug fixes
+- [ ] New features
+- [ ] Performance streamlining
+- [ ] Documentation updates
 - [ ] Other (describe below)
 
 ---
@@ -26,9 +26,9 @@ Closes #
 
 <!-- How did you verify your change works? -->
 
-- [ ] Ran `python atari.py` locally and the game launches without errors
+- [ ] Ran the game locally and it launches without errors
 - [ ] Tested the specific feature or fix I changed
-- [ ] No new linting errors (`ruff check atari.py` passes)
+- [ ] No new linting errors
 
 ---
 
@@ -37,7 +37,7 @@ Closes #
 - [ ] My code follows the existing style of the project
 - [ ] I have not introduced any unnecessary dependencies
 - [ ] I have updated `Checklist.md` if this closes an open issue
-- [ ] I have added or updated comments where the code is non-obvious
+- [ ] I have added comments where the code is non-obvious
 - [ ] I have read and agree to the [MIT License](../LICENCE) terms
 
 ---
