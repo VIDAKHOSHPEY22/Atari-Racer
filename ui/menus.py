@@ -94,14 +94,11 @@ class MenuRenderer:
             pg.draw.circle(screen, col, (dot_x, skin_dots_y), 5)
 
         self._draw_divider(screen, 390)
-
         hs_text = f_small.render(f"BEST  {high_score}", True, YELLOW)
         coins_text = f_small.render(f"COINS  {wallet}", True, (200, 200, 60))
         screen.blit(hs_text, (cx - 120, 408))
         screen.blit(coins_text, (cx + 10, 408))
-
         self._draw_divider(screen, 448)
-
         self.btn_play.draw(screen, f_small)
         self.btn_garage.draw(screen, f_tiny)
 
@@ -178,13 +175,10 @@ class MenuRenderer:
         if self._arrow_right_rect.collidepoint(pos):
             self.selected_skin = (self.selected_skin + 1) % len(CAR_SKINS)
             return "skin_changed"
-
         if self.btn_play.clicked(pos):
             return "play"
-
         if self.btn_garage.clicked(pos):
             return "garage"
-
         return None
 
     def handle_garage_click(self, pos, wallet, upgrades):
@@ -193,7 +187,6 @@ class MenuRenderer:
 
         from data.upgrades import UPGRADE_SPEED_MAX_LEVEL, UPGRADE_LIFE_MAX_LEVEL
         from data.upgrades import upgrade_speed_cost, upgrade_life_cost
-
         speed_level = upgrades["speed"]
         if speed_level < UPGRADE_SPEED_MAX_LEVEL and self.btn_upgrade_speed.clicked(pos):
             cost = upgrade_speed_cost(speed_level)
@@ -209,5 +202,5 @@ class MenuRenderer:
                 wallet -= cost
                 upgrades["life"] += 1
                 return "upgrade", wallet, upgrades
-
+                
         return None, wallet, upgrades
