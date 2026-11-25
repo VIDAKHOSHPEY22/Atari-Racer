@@ -16,17 +16,6 @@ ATARI RACER is an arcade-style endless racer where you dodge traffic, collect co
 
 ---
 
-## Quick Start
-
-```bash
-git clone https://github.com/VIDAKHOSHPEY22/Atari-Racer.git
-cd Atari-Racer
-pip install -r requirements.txt
-python atari.py
-```
-
----
-
 ## Features
 
 | Feature | Description |
@@ -121,15 +110,6 @@ pip install pygame-ce
 For sound effects:
 ```bash
 pip install pygame-ce numpy
-```
-
----
-
-## Building Executable
-
-```bash
-pip install pyinstaller
-pyinstaller --onefile --windowed atari.py
 ```
 
 ---
