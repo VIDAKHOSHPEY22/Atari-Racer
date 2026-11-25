@@ -249,27 +249,43 @@ class Game:
         self.achievements.set_stat("best_survival", int(self.time_survived))
 
     def _spawn_obstacle(self):
-        spd_lo, spd_hi = self._get_obs_speed()
-        spd = random.uniform(spd_lo, spd_hi)
-        occ = {c.lane for c in self.obs_cars}
-        available = [i for i in range(4) if i not in occ] or list(range(4))
-        lane = random.choice(available)
-        lc = LANE_CENTERS[lane]
+    spd_lo, spd_hi = self._get_obs_speed()
+    spd = random.uniform(spd_lo, spd_hi)
+    occ = {c.lane for c in self.obs_cars}
+    occupied_x = set()
+    for obj in self.obs_misc:
+        occupied_x.add(int(obj.x))
+    for c in self.obs_cars:
+        occupied_x.add(int(c.x))
+    available = [i for i in range(4) if i not in occ]
+    if not available:
+        available = list(range(4))
+    lane = random.choice(available)
+    lc = LANE_CENTERS[lane]
+    barrier_x = lc - Barrier.WIDTH // 2
+    oil_x = lc - OilSlick.WIDTH // 2
+    roll = random.random()
+    if roll < 0.60:
+        self.obs_cars.append(ObstacleCar(lane, spd))
+    elif roll < 0.88:
+        if int(barrier_x) not in occupied_x:
+            self.obs_misc.append(Barrier(barrier_x, spd))
+    else:
+        if int(oil_x) not in occupied_x:
+            self.obs_misc.append(OilSlick(oil_x, spd * 0.8))
 
-        roll = random.random()
-        if roll < 0.60:
-            self.obs_cars.append(ObstacleCar(lane, spd))
-        elif roll < 0.88:
-            self.obs_misc.append(Barrier(lc - Barrier.WIDTH // 2, spd))
-        else:
-            self.obs_misc.append(OilSlick(lc - OilSlick.WIDTH // 2, spd * 0.8))
-
-    def _spawn_coins(self):
-        available = list(LANE_CENTERS)
-        random.shuffle(available)
-        count = random.randint(1, 3)
-        for lc in available[:count]:
-            self.coins.append(Coin(lc, self.scroll_speed * 0.9))
+def _spawn_coins(self):
+    existing = set()
+    for coin in self.coins:
+        if coin.y < 0 or coin.y < HEIGHT * 0.3:
+            existing.add(int(coin.x))
+    available = [lc for lc in LANE_CENTERS if int(lc - Coin.RADIUS) not in existing and int(lc) not in existing]
+    if not available:
+        return
+    random.shuffle(available)
+    count = random.randint(1, min(3, len(available)))
+    for lc in available[:count]:
+        self.coins.append(Coin(lc, self.scroll_speed * 0.9))
 
     def _on_hit(self, contact_rect=None):
         self.lives -= 1
