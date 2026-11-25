@@ -1,5 +1,5 @@
-name: I would like to contribute!
-description: Contributing a PR with what you are working on
+name: I would like to contribute.
+description: Contributing a PR with what you are working on.
 labels: "contribution"
 assignees: "TheM1ddleM1n"
 body:
@@ -7,10 +7,10 @@ body:
     attributes:
       label: What are you adding?
       description: Tell me a short description of what you plan to add or remove.
-      placeholder: Streamlining performance and removing useless features.
+      placeholder: Streamlining performance so everything works smoothly.
     validations:
       required: true
   - type: textarea
     attributes:
-      label: Draft
-      description: Please draft your idea here
+      label: Draft Your Idea
+      description: Please draft your idea here for the devs to see.
