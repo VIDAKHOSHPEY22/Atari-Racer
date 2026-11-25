@@ -24,7 +24,7 @@ ATARI RACER is an arcade-style endless racer where you dodge traffic, collect co
 | Boost System | Press SPACE to activate speed boost (costs 100 points) |
 | Time Multiplier | Score multiplier increases every 30 seconds survived |
 | Progressive Difficulty | Speed and obstacle frequency ramp up over time |
-| Sound Effects | Procedurally generated audio for coins, boost, hits, and more |
+| Sound Effects | Procedurally generated audio for coins, boost, hits and more |
 | Particle Effects | Coin and hit burst effects |
 | Achievements | 16 achievements to unlock |
 | High Score | Automatically saves your best score |
